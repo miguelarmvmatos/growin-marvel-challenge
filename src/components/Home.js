@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import CardSection from "./CardSection";
 import Pagination from "./Pagination";
@@ -24,7 +24,7 @@ function Home(props) {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Search Filter Function
-  const updateHeroes = (characterSelected) => {
+  const updateCharacters = (characterSelected) => {
     const filtered = charactersRef.filter((hero) => {
       console.log(characterSelected);
       return hero.name.toLowerCase().includes(characterSelected.toLowerCase());
@@ -42,15 +42,15 @@ function Home(props) {
     });
   }, []);
   return (
-    <Fragment>
-      <Search characters={characters} setCharacter={updateHeroes} />
-      <CardSection heroes={currentCharacters} />
+    <div className="home">
+      <Search characters={characters} setCharacter={updateCharacters} />
+      <CardSection characters={currentCharacters} />
       <Pagination
         totalcharacters={characters.length}
         charactersPerPage={charactersPerPage}
         paginate={paginate}
       />
-    </Fragment>
+    </div>
   );
 }
 

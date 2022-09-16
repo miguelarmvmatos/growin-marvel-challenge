@@ -2,22 +2,23 @@ import React, { Fragment } from "react";
 
 import CardItem from "./CardItem";
 
-function CardSection({ heroes }) {
+function CardSection({ characters }) {
+  const IMAGE_SIZE = "standard_fantastic";
   return (
     <Fragment>
       <div className="card_section">
-        {heroes.map((hero) => (
+        {characters.map((character) => (
           <CardItem
-            image={hero.thumbnail.path + "/landscape_xlarge.jpg"}
-            title={hero.name}
-            description={hero.description}
-            id={hero.id}
-            key={hero.id}
+            //image={character.thumbnail.path + "/landscape_xlarge.jpg"}
+            image={`${character.thumbnail.path}/${IMAGE_SIZE}.${character.thumbnail.extension}`}
+            title={character.name}
+            description={character.description}
+            id={character.id}
+            key={character.id}
           />
         ))}
       </div>
     </Fragment>
   );
 }
-
 export default CardSection;

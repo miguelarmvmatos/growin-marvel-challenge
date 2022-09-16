@@ -6,7 +6,9 @@ function CardItem(props) {
     <Link to={`/${props.id}`}>
       <div className="card">
         <img src={props.image} alt="thumbnail" />
-        <h1 className="card-name">{props.title}</h1>
+        <div className="card_name">
+          <h3 title={props.title}>{props.title}</h3>
+        </div>
       </div>
     </Link>
   );

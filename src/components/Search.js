@@ -13,6 +13,7 @@ function Search({ characters, setCharacter }) {
             {...params}
             label="Search"
             placeholder="Search Heroes..."
+            variant="outlined"
           />
         )}
         onChange={(e) => setCharacter(e.target.textContent)}
