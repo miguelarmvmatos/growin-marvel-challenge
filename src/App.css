@@ -20,7 +20,7 @@ body,
 h1, h2, h3, h4{
   font-family: MarvelRegular;
   font-style: italic;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
 }
 
 a{
@@ -77,21 +77,23 @@ header a{
 .card > .card_name{
   font-family: MarvelRegular;
   font-style: italic;
-  letter-spacing: 1px;
+  letter-spacing: 5px;
   position: absolute;
   bottom: 4px;
   right: 0;
   background-color: #fff;
   border: 2px solid #000;
   padding: 5px;
-  max-width: 160px;
+  max-width: 215px;
 }
 
 .paginationWrapper{
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  left: 30px;
+  left: 20px;
+  padding: 20px 10px;
+  background-color: #fff;
 }
 
 .paginationWrapper > ul{
@@ -103,8 +105,8 @@ header a{
   background-color: #000;
   color: #fff;
   border: 1px solid #000;
-  width: 30px;
-  height: 30px;
+  display: block;
+  padding: 5px 10px;
   margin-bottom: 5px;
   border-radius: 5px;
   cursor: pointer;
@@ -132,14 +134,26 @@ footer > a{
   flex-wrap: wrap;
   justify-content: flex-start;
 }
+@media(max-width: 780px){
+  .character_details-container{
+    justify-content: center;
+  }
+}
 
 .character_details-container > *{
   flex: 1;
 }
+
+@media(max-width: 780px){
+  .character_details-container > *{
+    flex: auto;
+  }
+}
+
 .character_details-container > img{
   max-width: 800px;
   max-height: 800px;
-  width: fit-content;
+  width: 100%;
 }
 
 .character_details{
@@ -154,11 +168,13 @@ footer > a{
 .character_details p{
   padding: 10px;
   background-color: rgba(182, 182, 180, .2);
+  overflow: auto;
 }
 
 .character_description{
   max-height: 80px;
 }
+
 .character_details ul{
   list-style: none;
   padding: 0;  
@@ -167,6 +183,65 @@ footer > a{
   max-height: 220px;
   overflow-y: auto;
 }
+
 .character_details ul li{
   padding-bottom: 10px;
+}
+
+
+
+.loading {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+}
+
+.loading div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  margin: 8px;
+  border: 8px solid red;
+  border-radius: 50%;
+  animation: loading 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: red transparent transparent transparent;
+  transform: translate(-50%, -50%);
+}
+
+.loading div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.loading div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.loading div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+.loading > p{  
+  font-size: 20px;
+  font-family: MarvelRegular;
+  font-style: italic;
+  letter-spacing: 5px;
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

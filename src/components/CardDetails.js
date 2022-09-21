@@ -11,11 +11,15 @@ function CardDetails() {
 
   useEffect(() => {
     getCharacter(id).then((output) => {
-      setCharacter(output.data.results[0]);
+      window.localStorage.setItem(
+        "character",
+        JSON.stringify(output.data.results[0])
+      );
+      const hero = JSON.parse(localStorage.getItem("character"));
+      setCharacter(hero);
     });
   }, []);
   if (!character) return;
-  console.log("character", character);
   return (
     <div className="container large">
       <div className="character_details-container">

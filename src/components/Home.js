@@ -4,14 +4,15 @@ import CardSection from "./CardSection";
 import Pagination from "./Pagination";
 import Search from "./Search";
 
-import { getCharacters } from "../api/Api";
+import { getAllCharacters } from "../api/Api";
 
 function Home(props) {
   const [characterSelected, setCharacterSelected] = useState("");
   const [characters, setCharacters] = useState([]);
   const [charactersRef, setCharactersRef] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [charactersPerPage] = useState(15);
+  const [charactersPerPage] = useState(100);
+  const [loading, setLoading] = useState(true);
 
   const indexOfLastCharacter = currentPage * charactersPerPage;
   const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
@@ -22,11 +23,9 @@ function Home(props) {
 
   // Change Page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   // Search Filter Function
   const updateCharacters = (characterSelected) => {
     const filtered = charactersRef.filter((hero) => {
-      console.log(characterSelected);
       return hero.name.toLowerCase().includes(characterSelected.toLowerCase());
     });
     setCharacterSelected(characterSelected);
@@ -34,17 +33,16 @@ function Home(props) {
   };
 
   useEffect(() => {
-    getCharacters().then((output) => {
-      setCharacters(output.data.results);
-      setCharactersRef(output.data.results);
-      /*setLoading(false)*/
-      console.log(output);
+    getAllCharacters().then((output) => {
+      setCharacters(output);
+      setCharactersRef(output);
+      setLoading(false);
     });
   }, []);
   return (
     <div className="home">
       <Search characters={characters} setCharacter={updateCharacters} />
-      <CardSection characters={currentCharacters} />
+      <CardSection characters={currentCharacters} loading={loading} />
       <Pagination
         totalcharacters={characters.length}
         charactersPerPage={charactersPerPage}
